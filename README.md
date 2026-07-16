@@ -1,43 +1,84 @@
-# Steam Pasteurization Process Design for Sugarcane Bagasse Using Experimental Property Characterization and Dual-Regime DWSIM Simulation
+# RRS-001 Sugarcane Bagasse Steam Pasteurization
+
+[← Research Lab](https://github.com/atmblaise/research-lab) | [↑ Profile](https://github.com/atmblaise) | [Development Lab →](https://github.com/atmblaise/development-lab)
+
+---
+
+**Experimental characterization, mathematical modelling, and DWSIM based process simulation of a steam pasteurization process for sugarcane bagasse.**
 
 ## Project Summary
 
-This repository contains a steam pasteurization process design study for sugarcane bagasse developed as a chemical engineering final year project. The work integrates experimental characterization, heat-transfer modeling, process simulation, and sensitivity analysis to evaluate steam-based pasteurization of bagasse intended for use as a mushroom cultivation substrate.
+RRS-001 investigates the engineering design of a steam pasteurization process for sugarcane bagasse intended for mushroom cultivation. The project integrates experimental material characterization, heat transfer analysis, mathematical modelling, and process simulation to evaluate steam based pasteurization under representative operating conditions.
 
-An initial literature review identified significant variability in published thermophysical properties of bagasse, making direct use of literature data unsuitable for process design. Consequently, an experimental program was conducted to determine thermal conductivity, specific heat capacity, moisture content, and bulk density under multiple material conditions.
+Published thermophysical properties of sugarcane bagasse exhibit considerable variability, making direct application of literature values unsuitable for reliable process design. To establish representative engineering parameters, an experimental characterization programme was undertaken to determine thermal conductivity, specific heat capacity, moisture content, and bulk density under multiple material conditions.
 
-Following experimental evaluation and statistical comparison, wet uncompacted bagasse was selected as the process design basis because it most closely represents industrial substrate preparation and utilization practices.
+The experimentally determined properties were incorporated into transient mathematical models and implemented in DWSIM using custom unit operations and IronPython scripts. Two condensation regimes were investigated to evaluate the influence of condensate behaviour on process performance through steam flowrate sensitivity analysis.
 
-The experimentally determined properties were incorporated into a transient mathematical model describing sensible heat transfer, steam condensation, and biomass heating behavior. The model was implemented in DWSIM using custom unit operations and IronPython scripts.
-
-Two separate condensation scenarios were developed:
-
-* Condensation without condensate deposition.
-* Condensation with condensate deposition and moisture accumulation.
-
-Steam flowrate sensitivity analysis was performed to evaluate process performance and identify suitable operating conditions for steam pasteurization.
-
-The repository should be viewed as a process-design and engineering-analysis artifact rather than a validated industrial pasteurization system.
+This repository documents the engineering methodology, computational models, simulation files, and supporting documentation developed during the project. It should be regarded as a process design and engineering analysis study rather than a validated industrial pasteurization system.
 
 ---
 
-## Current Status
+# Engineering Problem
 
-The repository includes:
+Steam pasteurization is widely used to prepare lignocellulosic biomass for mushroom cultivation by reducing competing microorganisms while preserving beneficial microbial activity. Reliable process design depends on representative thermophysical properties and accurate prediction of heat transfer within the biomass bed.
 
-* Experimental characterization data.
-* DWSIM simulation files & custom IronPython unit-operation scripts.
-* Reference simulation outputs.
-* Flowrate sensitivity study results.
-* Supporting engineering documentation.
+Published material properties for sugarcane bagasse vary considerably due to differences in moisture content, compaction, fibre composition, and experimental methods. These inconsistencies introduce uncertainty into engineering calculations and process simulations.
 
-The repository represents the final project state submitted for academic review.
-
-Additional experimental validation and industrial-scale testing would be required before operational implementation.
+This project addresses that challenge by experimentally characterizing the material and integrating the measured properties into a process simulation framework suitable for engineering analysis.
 
 ---
 
-## Repository Structure
+# Objectives
+
+The objectives of this study were to:
+
+* Experimentally determine the thermophysical properties of sugarcane bagasse.
+* Select representative engineering properties for process design.
+* Develop transient heat transfer and condensation models.
+* Implement the governing equations in DWSIM using custom unit operations.
+* Investigate condensation behaviour through two modelling approaches.
+* Evaluate process performance across a range of steam flowrates.
+* Document the engineering methodology for future development and validation.
+
+---
+
+# Engineering Workflow
+
+```text
+Industrial Problem
+
+↓
+
+Literature Review
+
+↓
+
+Experimental Characterization
+
+↓
+
+Heat Transfer Analysis
+
+↓
+
+Mathematical Modelling
+
+↓
+
+Process Simulation
+
+↓
+
+Sensitivity Analysis
+
+↓
+
+Engineering Evaluation
+```
+
+---
+
+# Repository Structure
 
 ```text
 bagasse_pasteurization/
@@ -45,187 +86,89 @@ bagasse_pasteurization/
 │   LICENSE
 │   README.md
 │   tree.txt
-│   
-├───data
-│   ├───processed_experimental_data
-│   │       processed_experimental_results.xlsx
-│   │       
-│   ├───raw_data_processing
-│   │   ├───moisture_content
-│   │   ├───specific_heat_capacity
-│   │   └───thermal_conductivity
-│   │           thermal_conductivity_experimental_calculations.xlsx
-│   │           
-│   └───raw_experimental_data
-│       ├───moisture_content
-│       │       moisture_content_raw_data.xlsx
-│       │       
-│       ├───specific_heat_capacity
-│       │       spefic_heat_raw_data.xlsx
-│       │       
-│       └───thermal_conductivity
-│               thermal_conductivity_raw_data.xlsx
-│               
-├───dwsim
-│   ├───IronPython_scripts
-│   │       deposition.py
-│   │       no_deposition.py
-│   │       
-│   └───simulation_flowsheets
-│           Pasteurizer no deposition.dwxmz
-│           pasteurizer with deposition.dwxmz
-│           
-├───engineering_documentation
-│       Final Year Report-1.pdf
-│       
-├───reference_simulation_outputs
-│   ├───deposition_model
-│   │       deposition.xlsx
-│   │       
-│   └───no_deposition_model
-│           no_deposition.xlsx
-│           
-└───results
-        results.xlsx
-        
-
+│
+├── data
+│   ├── processed_experimental_data
+│   ├── raw_data_processing
+│   └── raw_experimental_data
+│
+├── dwsim
+│   ├── IronPython_scripts
+│   └── simulation_flowsheets
+│
+├── engineering_documentation
+│
+├── reference_simulation_outputs
+│
+└── results
 ```
 
 ---
 
-## Engineering Workflow
+# Experimental Characterization
 
-The project was executed through five major engineering phases:
+An experimental programme was conducted to determine engineering properties required for process modelling.
 
-### Phase 1 – Literature Review and Experimental Planning
+Measured properties included:
 
-Published bagasse thermophysical properties were reviewed and assessed for suitability in process design applications.
+| Property               | Engineering Application     |
+| ---------------------- | --------------------------- |
+| Thermal Conductivity   | Heat transfer modelling     |
+| Specific Heat Capacity | Energy balance calculations |
+| Moisture Content       | Material characterization   |
+| Bulk Density           | Process design calculations |
 
-Due to inconsistent literature values, an experimental program was developed to determine process-relevant material properties.
-
-### Phase 2 – Experimental Characterization
-
-Custom experimental rigs were designed and fabricated.
-
-Experiments were conducted to determine:
-
-* Thermal conductivity
-* Specific heat capacity
-* Moisture content
-* Bulk density
-
-Material characterization was performed under multiple conditions:
+Material characterization was performed under:
 
 * Wet uncompacted bagasse
 * Wet compacted bagasse
 * Dry uncompacted bagasse
 * Dry compacted bagasse
 
-Wet bagasse moisture content was approximately 70–75%.
+Following statistical comparison, **wet uncompacted bagasse** was selected as the process design basis because it most closely represents industrial mushroom substrate preparation.
 
-Dry bagasse moisture content was approximately 10%.
+---
 
-Statistical analysis was performed to compare the measured properties across the different moisture-content and compaction conditions and to evaluate the influence of these factors on bagasse thermal behavior.
+# Heat Transfer Analysis
 
-For process design and simulation, wet uncompacted bagasse was selected as the design basis because it most closely represents the condition in which bagasse is commonly utilized as a mushroom cultivation substrate.
+A Biot number analysis was performed to evaluate the relationship between internal conduction resistance and external convection resistance during steam heating.
 
-### Phase 3 – Heat Transfer Analysis
+The analysis supported:
 
-A Biot number analysis was performed to assess internal thermal resistance relative to external convective resistance.
-
-The analysis informed:
-
-* Modeling assumptions
-* Heat-transfer treatment
+* Thermal modelling assumptions
 * Representative bagasse dimensions
-* Process design considerations
+* Heat transfer methodology
+* Process design decisions
 
-### Phase 4 – Mathematical Modeling
-
-Transient mass and energy balances were developed for steam–bagasse interaction.
-
-The model incorporated:
-
-* Sensible heat transfer between steam and bagasse.
-* Latent heat transfer from steam condensation.
-* Dynamic steam quality behavior.
-* Condensation-rate estimation.
-* Time-dependent bagasse temperature prediction.
-
-### Phase 5 – Process Simulation and Design
-
-The governing equations were implemented in DWSIM through custom unit operations and IronPython scripting.
-
-Sensitivity analysis was conducted across a range of steam flowrates to evaluate process performance and establish preliminary design parameters.
+Supporting calculations are available within the engineering documentation.
 
 ---
 
-## Experimental Characterization
+# Mathematical Modelling
 
-Experimental data are stored under:
+Transient mass and energy balances were developed to describe steam heating of the biomass bed.
 
-data/
+The model incorporates:
 
-The experimental program generated:
-
-| Property               | Purpose                      |
-| ---------------------- | ---------------------------- |
-| Thermal Conductivity   | Heat-transfer modeling input |
-| Specific Heat Capacity | Energy balance input         |
-| Moisture Content       | Material characterization    |
-| Bulk Density           | Process design calculations  |
-
-Only wet uncompacted bagasse properties were used in the final process model.
+* Sensible heat transfer
+* Latent heat released during condensation
+* Condensation rate estimation
+* Steam quality evolution
+* Time dependent bagasse temperature prediction
 
 ---
 
-## Biot Number Analysis
+# Condensation Regimes
 
-Supporting calculations and documentation are stored under:
+Two engineering models were developed to evaluate uncertainty associated with condensate behaviour.
 
-engineering_documentation/
-
-The Biot number analysis was used to evaluate the relative significance of internal conduction resistance and external convection resistance during steam heating.
-
-The analysis supported the thermal modeling assumptions adopted within the simulation framework.
-
----
-
-## Mathematical Model
-
-The process was modeled as a transient steam-heating system.
-
-Two heat-transfer mechanisms were considered:
-
-### Sensible Heat Transfer
-
-At steam introduction, energy transfer occurs due to the temperature difference between steam and bagasse.
-
-The model accounts for transient heating of both phases through coupled energy balances.
-
-### Latent Heat Transfer
-
-As steam approaches saturation conditions, condensation occurs.
-
-The model calculates condensation rates using heat-transfer correlations and incorporates latent heat release into the bagasse energy balance.
-
----
-
-## Condensation Regime Development
-
-Two separate model formulations were developed to investigate uncertainty associated with condensate behavior.
-
-### Scenario 1 – Condensation Without Deposition
-
-Implemented in:
-
-dwsim/no_deposition_model/
+## Condensation Without Deposition
 
 Assumptions:
 
 * Steam condenses.
-* Latent heat is transferred to the bagasse.
-* Condensed water does not accumulate within the biomass bed.
+* Latent heat is transferred to the biomass.
+* Condensed water does not accumulate.
 * Bagasse mass remains constant.
 
 Outputs include:
@@ -236,197 +179,166 @@ Outputs include:
 * Steam quality
 * Condensed mass
 
-### Scenario 2 – Condensation With Deposition
+---
 
-Implemented in:
-
-dwsim/deposition_model/
+## Condensation With Deposition
 
 Assumptions:
 
 * Steam condenses.
-* Condensed water deposits onto the bagasse.
+* Condensed water accumulates within the biomass bed.
 * Bagasse mass increases during operation.
-* Heat and mass transfer are coupled.
+* Heat and mass transfer are fully coupled.
 
 Additional outputs include:
 
-* Dynamic bagasse mass accumulation
-* Outlet steam reduction due to condensation
+* Dynamic bagasse mass
+* Steam outlet flowrate reduction
 
 ---
 
-## DWSIM Implementation
+# DWSIM Implementation
 
-The repository contains DWSIM flowsheets and custom IronPython scripts.
+The mathematical models were implemented in DWSIM through custom unit operations developed using IronPython.
 
 Simulation components include:
 
-| Component             | Purpose                           |
-| --------------------- | --------------------------------- |
-| DWSIM Flowsheet       | Process representation            |
-| Custom Unit Operation | Mathematical model implementation |
-| IronPython Scripts    | Dynamic calculations              |
-| Spreadsheet Interface | Result export and visualization   |
+* DWSIM flowsheets
+* IronPython scripts
+* Spreadsheet interfaces
+* Reference simulation outputs
 
 The simulation tracks:
 
 * Bagasse temperature
 * Steam temperature
 * Condensation rate
-* Steam outlet flowrate
 * Steam quality
+* Steam outlet flowrate
 * Condensed mass
-* Bagasse mass accumulation (deposition model)
+* Dynamic bagasse mass
 
 ---
 
-## Sensitivity Analysis
+# Sensitivity Analysis
 
-Steam flowrate sensitivity analysis was performed between approximately:
+Steam flowrate sensitivity analysis was performed over a range of approximately **0.1 kg/h to 200 kg/h**.
 
-0.1 kg/h and 200 kg/h
+Each simulation:
 
-For each simulation run:
-
-* Steam flowrate was specified.
-* Simulation was executed until the bagasse reached 75°C.
-* Pasteurization time was recorded.
-* Results were exported to spreadsheets for analysis.
-* Some steam-flowrate simulation runs required extrapolation to obtain the actual pasteurization processing time.
+* specified the inlet steam flowrate
+* executed until the bagasse reached 75°C
+* recorded pasteurization time
+* exported simulation results for analysis
 
 ---
 
-## Key Results
+# Results
 
-The primary simulation output was pasteurization time required to achieve a bagasse temperature of 75°C.
+The principal performance indicator was the time required for the biomass to reach the target pasteurization temperature of **75°C**.
 
 | Steam Flowrate (kg/h) | No Deposition (h) | Deposition (h) |
-| --------------------- | ----------------: | -------------: |
-| 0.1                   |             32.91 |          34.00 |
-| 0.5                   |             25.75 |          28.56 |
-| 2                     |             16.01 |          18.00 |
-| 4                     |             10.31 |          12.22 |
-| 6                     |              6.88 |           8.19 |
-| 8                     |              5.15 |           6.11 |
-| 10                    |              4.13 |           4.86 |
-| 12                    |             12.64 |           4.17 |
-| 14                    |             13.53 |           3.67 |
-| 16                    |             14.54 |           3.33 |
-| 18                    |             15.71 |           3.06 |
-| 20                    |             17.06 |           2.92 |
-| 50                    |             25.63 |           2.64 |
-| 100                   |             21.99 |           2.50 |
-| 150                   |             18.86 |           2.36 |
-| 200                   |             16.43 |           2.36 |
-
-The results demonstrate the influence of steam flowrate and condensate behavior on predicted pasteurization performance.
-
-The deposition model generally predicted reduced pasteurization times at higher flowrates due to additional energy and moisture accumulation within the bagasse bed.
-
-The no-deposition model exhibited non-monotonic behavior at higher steam flowrates. The source of this behavior was not fully investigated during the project and remains an area for future study.
+| --------------------: | ----------------: | -------------: |
+|                   0.1 |             32.91 |          34.00 |
+|                   0.5 |             25.75 |          28.56 |
+|                     2 |             16.01 |          18.00 |
+|                     4 |             10.31 |          12.22 |
+|                     6 |              6.88 |           8.19 |
+|                     8 |              5.15 |           6.11 |
+|                    10 |              4.13 |           4.86 |
+|                    12 |             12.64 |           4.17 |
+|                    14 |             13.53 |           3.67 |
+|                    16 |             14.54 |           3.33 |
+|                    18 |             15.71 |           3.06 |
+|                    20 |             17.06 |           2.92 |
+|                    50 |             25.63 |           2.64 |
+|                   100 |             21.99 |           2.50 |
+|                   150 |             18.86 |           2.36 |
+|                   200 |             16.43 |           2.36 |
 
 ---
 
-## Data Layout
+# Engineering Discussion
 
-Experimental data:
+The study demonstrates how experimentally determined material properties can improve engineering confidence during process design and simulation.
 
-data/
+The condensation deposition model generally predicted shorter pasteurization times at higher steam flowrates because condensed water contributed additional thermal energy and increased moisture within the biomass bed.
 
-Simulation files:
-
-dwsim/
-
-Simulation outputs:
-
-reference simulation outputs/
+The no deposition model exhibited non monotonic behaviour at higher steam flowrates. Although this behaviour was not fully investigated during the project, it represents an important area for future model refinement and validation.
 
 ---
 
-Example workbook contents:
+# Engineering Software
 
-| Sheet                | Contents                                   |
-| -------------------- | ------------------------------------------ |
-| Temperature Profile  | Steam and bagasse temperatures versus time |
-| Condensation Profile | Condensation-rate history                  |
-| Steam Quality        | Steam-quality evolution                    |
-| Mass Balance         | Condensate generation and accumulation     |
-| Summary              | Final pasteurization metrics               |
+The project was developed using:
 
-Summary analysis files are stored under:
-
-results/
+* DWSIM
+* IronPython
+* Microsoft Excel
+* Custom DWSIM Unit Operations
 
 ---
 
-## How To Run
+# Repository Contents
 
-Open the appropriate DWSIM flowsheet:
+The repository includes:
 
-* deposition_model.dwxmz
-* no_deposition_model.dwxmz
-
-Configure:
-
-* Bagasse properties
-* Geometry
-* Steam flowrate
-* Initial conditions
-
-Execute the simulation.
-
-Review exported results through the DWSIM spreadsheet interface or saved workbook outputs.
+* Experimental datasets
+* Data processing spreadsheets
+* DWSIM simulation files
+* IronPython scripts
+* Engineering documentation
+* Reference simulation outputs
+* Process analysis results
 
 ---
 
-## Model Assumptions
+# Model Assumptions
 
-* Wet uncompacted bagasse represents the process design basis.
-* Steam pressure remains constant throughout the simulation.
-* Condensation occurs at saturation conditions.
-* Heat-transfer coefficients are estimated using Nusselt correlations.
-* Bagasse properties remain constant during each simulation.
-* Steam flowrate remains constant during operation.
-* The models are intended for process-design and sensitivity-analysis purposes.
-
----
-
-## Known Limitations
-
-* Experimental uncertainty exists in measured thermophysical properties.
-* The model has not been validated against industrial-scale pasteurization data.
-* Pressure-drop effects were not considered.
-* Steam-distribution effects within the biomass bed were not considered.
-* Spatial moisture gradients were not modeled.
-* The no-deposition scenario exhibited unresolved non-monotonic behavior at higher steam flowrates.
-* Results should be interpreted as engineering-analysis outputs rather than operational guarantees.
+* Wet uncompacted bagasse represents the design basis.
+* Steam pressure remains constant.
+* Condensation occurs under saturation conditions.
+* Heat transfer coefficients are estimated using Nusselt correlations.
+* Material properties remain constant during each simulation.
+* Steam flowrate remains constant throughout operation.
 
 ---
 
-## Future Improvements
+# Limitations
 
-Potential future work includes:
+Current limitations include:
 
-* Industrial-scale validation.
-* Additional property characterization studies.
-* Investigation of the no-deposition model behavior.
-* Distributed heat and moisture transfer modeling.
-* Pressure-drop modeling.
-* Integration with standalone Python-based simulation workflows.
-
----
-
-## License
-
-This repository is distributed under the MIT License.
-
-Users are free to use, modify, distribute, and build upon the work in accordance with the terms of the license. See the LICENSE file for complete details.
+* Experimental uncertainty in measured properties.
+* No industrial scale validation.
+* Pressure drop not included.
+* Steam distribution within the biomass bed not modelled.
+* Spatial moisture gradients neglected.
+* Unresolved behaviour within the no deposition model at higher flowrates.
 
 ---
 
-## Project Note
+# Future Work
 
-Before relying on results, users should review the experimental assumptions, mathematical-model derivations, DWSIM implementation details, and simulation outputs.
+Future development may include:
 
-The committed files represent reference engineering artifacts generated during the project and should not be interpreted as validated industrial design standards.
+* Industrial scale validation.
+* Distributed heat and moisture transfer models.
+* Pressure drop modelling.
+* Additional experimental characterization.
+* Standalone Python simulation framework.
+* Process optimization studies.
+
+---
+
+# Related Workspaces
+
+* [Research Lab](https://github.com/atmblaise/research-lab)
+* [Development Lab](https://github.com/atmblaise/development-lab)
+* [Engineering Technologies](https://github.com/atmblaise/engineering-technologies)
+* [Publications](https://github.com/atmblaise/publications)
+
+---
+
+# Navigation
+
+[← Research Lab](https://github.com/atmblaise/research-lab) | [↑ Profile](https://github.com/atmblaise) | [Development Lab →](https://github.com/atmblaise/development-lab)
