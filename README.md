@@ -168,7 +168,7 @@ Assumptions:
 
 * Steam condenses.
 * Latent heat is transferred to the biomass.
-* Condensed water does not accumulate.
+* Condensed water does not accumulate within bagasse.
 * Bagasse mass remains constant.
 
 Outputs include:
